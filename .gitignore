@@ -1,3 +1,8 @@
-# To ignore other files.
+# Ignore this file in the repository root
+E-uparjan_flow_old.pptx
 
-./E-uparjan_flow_old.pptx
+# Ignore every pptx file everywhere
+*.pptx
+
+# Ignore only root-level pptx files
+/*.pptx
