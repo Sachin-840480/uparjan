@@ -1,5 +1,5 @@
 import { CATEGORIES } from "../types/farmerTypes";
-import "./FarmerDetails.css";
+import "./FarmerRegistration.css";
 
 export default function FarmerDetailsForm({
   farmerId, aadhaar, farmerName,
