@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { Toaster } from "react-hot-toast";
+
 import Dashboard from "./dashboard/pages/Dashboard";
 
 import FarmerRegistration from "./modules/farmer/pages/FarmerRegistration";
@@ -15,7 +17,6 @@ import MillerLogin from "./auth/pages/MillerLogin";
 import FarmerDetails from "./modules/farmer/pages/FarmerDetails";
 
 import FarmerLandDetails from "./modules/farmer/pages/FarmerLandDetails";
-import { Toaster } from "react-hot-toast";
 
 <Toaster position="top-right" />;
 function App() {
