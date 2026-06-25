@@ -1,8 +1,6 @@
-import DistrictDropdown from
-"../../../shared/components/DistrictDropdown";
+import DistrictDropdown from "../../../shared/components/DistrictDropdown";
 
-import MspDropdown from
-"../../../shared/components/MspDropdown";
+import MspDropdown from "../../../shared/components/MspDropdown";
 
 import "./FarmerRegistration.css";
 
@@ -15,15 +13,10 @@ export default function FarmerForm({
 }) {
   return (
     <div className="registration-container">
-
       <div className="registration-card">
-
-        <h2>
-          Farmer Registration
-        </h2>
+        <h2>Farmer Registration</h2>
 
         <form onSubmit={handleSubmit}>
-
           <DistrictDropdown
             districts={districts}
             value={formData.district}
@@ -72,14 +65,9 @@ export default function FarmerForm({
             className="form-input"
           />
 
-          <button className="submit-button">
-            Submit
-          </button>
-
+          <button className="submit-button">Submit</button>
         </form>
-
       </div>
-
     </div>
   );
 }

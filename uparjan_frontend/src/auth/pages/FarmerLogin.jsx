@@ -3,12 +3,7 @@ import LoginForm from "../components/LoginForm";
 import useLogin from "../hooks/useLogin";
 
 export default function FarmerLogin() {
-
-  const {
-    formData,
-    handleChange,
-    handleSubmit,
-  } = useLogin("FARMER");
+  const { formData, handleChange, handleSubmit } = useLogin("FARMER");
 
   return (
     <LoginForm

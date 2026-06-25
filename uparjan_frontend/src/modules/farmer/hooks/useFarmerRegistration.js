@@ -2,38 +2,26 @@ import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getDistricts } from
-"../../../master/district/districtService";
+import { getDistricts } from "../../../master/district/districtService";
 
-import { getMspList } from
-"../../../master/msp/mspService";
+import { getMspList } from "../../../master/msp/mspService";
 
-import { setDistricts } from
-"../../../master/district/districtSlice";
+import { setDistricts } from "../../../master/district/districtSlice";
 
-import { setMspList } from
-"../../../master/msp/mspSlice";
+import { setMspList } from "../../../master/msp/mspSlice";
 
-import { registerFarmer } from
-"../services/farmerService";
+import { registerFarmer } from "../services/farmerService";
 
-import { initialFarmerForm } from
-"../types/farmerTypes";
+import { initialFarmerForm } from "../types/farmerTypes";
 
 export default function useFarmerRegistration() {
-
   const dispatch = useDispatch();
 
-  const districts = useSelector(
-    (state) => state.district.districts
-  );
+  const districts = useSelector((state) => state.district.districts);
 
-  const mspList = useSelector(
-    (state) => state.msp.mspList
-  );
+  const mspList = useSelector((state) => state.msp.mspList);
 
-  const [formData, setFormData] =
-    useState(initialFarmerForm);
+  const [formData, setFormData] = useState(initialFarmerForm);
 
   useEffect(() => {
     loadDistricts();
@@ -66,10 +54,7 @@ export default function useFarmerRegistration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      formData.password !==
-      formData.rePassword
-    ) {
+    if (formData.password !== formData.rePassword) {
       alert("Passwords do not match");
       return;
     }

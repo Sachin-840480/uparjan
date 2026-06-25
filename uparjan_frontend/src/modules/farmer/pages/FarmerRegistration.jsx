@@ -1,18 +1,10 @@
-import FarmerForm from
-"../components/FarmerForm";
+import FarmerForm from "../components/FarmerForm";
 
-import useFarmerRegistration from
-"../hooks/useFarmerRegistration";
+import useFarmerRegistration from "../hooks/useFarmerRegistration";
 
 export default function FarmerRegistration() {
-
-  const {
-    districts,
-    mspList,
-    formData,
-    handleChange,
-    handleSubmit,
-  } = useFarmerRegistration();
+  const { districts, mspList, formData, handleChange, handleSubmit } =
+    useFarmerRegistration();
 
   return (
     <FarmerForm
