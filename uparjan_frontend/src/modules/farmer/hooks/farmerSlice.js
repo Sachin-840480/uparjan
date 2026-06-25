@@ -5,7 +5,7 @@ const initialState = {
   aadhaar: null,
   farmerName: null,
   districtId: null,
-  registrationStatus: null, // 'REGISTERED' | 'DETAILS_SUBMITTED' | 'LAND_SUBMITTED'
+  registrationStatus: null,
 };
 
 const farmerSlice = createSlice({

@@ -65,7 +65,7 @@ export default function useFarmerLandDetails() {
 
   useEffect(() => {
     if (!farmerId || registrationStatus === "REGISTERED") {
-      navigate("/farmer/details");
+      navigate("/farmer-registration");
       return;
     }
 
