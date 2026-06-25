@@ -1,5 +1,4 @@
 import DistrictDropdown from "../../../shared/components/DistrictDropdown";
-
 import MspDropdown from "../../../shared/components/MspDropdown";
 
 import "./FarmerRegistration.css";

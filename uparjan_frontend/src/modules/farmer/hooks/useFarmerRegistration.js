@@ -179,7 +179,7 @@ import {
   getBranches,
   submitFarmerDetails,
 } from "../services/farmerService";
-import { setFarmerSession } from "../farmerSlice";
+import { setFarmerSession } from "./farmerSlice";
 import {
   initialFarmerDetails,
   ALLOWED_FILE_TYPES,
