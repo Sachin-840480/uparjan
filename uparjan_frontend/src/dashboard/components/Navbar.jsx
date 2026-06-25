@@ -13,7 +13,7 @@ export default function Navbar() {
 
       <a href="/miller/login">Miller Login</a>
 
-      <a href="/farmer/registration">Farmer Registration</a>
+      <a href="/farmer-registration">Farmer Registration</a>
     </div>
   );
 }
