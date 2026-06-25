@@ -15,6 +15,7 @@ import MillerLogin from "./auth/pages/MillerLogin";
 import FarmerDetails from "./modules/farmer/pages/FarmerDetails";
 
 import FarmerLandDetails from "./modules/farmer/pages/FarmerLandDetails";
+import { Toaster } from "react-hot-toast";
 
 <Toaster position="top-right" />;
 function App() {
