@@ -1,8 +1,4 @@
-export default function DistrictDropdown({
-  districts,
-  value,
-  onChange,
-}) {
+export default function DistrictDropdown({ districts, value, onChange }) {
   return (
     <select
       name="district"
@@ -10,15 +6,10 @@ export default function DistrictDropdown({
       onChange={onChange}
       className="form-input"
     >
-      <option value="">
-        Select District
-      </option>
+      <option value="">Select District</option>
 
       {districts.map((district) => (
-        <option
-          key={district.id}
-          value={district.id}
-        >
+        <option key={district.id} value={district.id}>
           {district.name}
         </option>
       ))}
