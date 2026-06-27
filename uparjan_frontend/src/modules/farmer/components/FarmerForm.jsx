@@ -16,7 +16,8 @@ export default function FarmerForm({
         <h2>Farmer Registration</h2>
 
         <form onSubmit={handleSubmit}>
-          <DistrictDropdown
+          {/* old */}
+          {/* <DistrictDropdown
             districts={districts}
             value={formData.district}
             onChange={handleChange}
@@ -25,6 +26,18 @@ export default function FarmerForm({
           <MspDropdown
             mspList={mspList}
             value={formData.msp}
+            onChange={handleChange}
+          /> */}
+
+          {/* new */}
+          <DistrictDropdown
+            districts={districts}
+            value={formData.districtId}
+            onChange={handleChange}
+          />
+          <MspDropdown
+            mspList={mspList}
+            value={formData.mspId}
             onChange={handleChange}
           />
 

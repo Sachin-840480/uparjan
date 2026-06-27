@@ -91,8 +91,8 @@ const AADHAR_REGEX = /^\d{12}$/;
 const PASSWORD_MIN_LENGTH = 8;
 
 function validate(formData) {
-  if (!formData.districtId) return "Select a district";
-  if (!formData.mspId) return "Select an MSP";
+  if (!formData.district && !formData.districtId) return "Select a district";
+  if (!formData.msp) return "Select an MSP";
   if (!AADHAR_REGEX.test(formData.aadhar)) return "Aadhaar must be 12 digits";
   if (!formData.farmerName.trim()) return "Farmer name required";
   if (formData.password.length < PASSWORD_MIN_LENGTH)
@@ -142,7 +142,8 @@ export default function useFarmerRegistration() {
       const { password, rePassword, ...payload } = formData;
       const res = await registerFarmer({ ...payload, password });
 
-      const { farmerId } = res.data;
+      //const { farmerId } = res.data;
+      const { farmerId } = res.data.data; 
 
       dispatch(
         setFarmerSession({

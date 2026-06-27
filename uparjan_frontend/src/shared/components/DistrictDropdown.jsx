@@ -1,7 +1,15 @@
 export default function DistrictDropdown({ districts, value, onChange }) {
   return (
+
+    // <select
+    //   name="district"
+    //   value={value}
+    //   onChange={onChange}
+    //   className="form-input"
+    // >
+    
     <select
-      name="district"
+      name="districtId"
       value={value}
       onChange={onChange}
       className="form-input"
