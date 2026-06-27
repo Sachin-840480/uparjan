@@ -73,7 +73,6 @@
 //   };
 // }
 
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -89,15 +88,21 @@ import { initialFarmerForm } from "../types/farmerTypes";
 
 const AADHAR_REGEX = /^\d{12}$/;
 const PASSWORD_MIN_LENGTH = 8;
-
 function validate(formData) {
-  if (!formData.district && !formData.districtId) return "Select a district";
-  if (!formData.msp) return "Select an MSP";
+  if (!formData.districtId) return "Select a district";
+
+  if (!formData.mspId) return "Select an MSP";
+
   if (!AADHAR_REGEX.test(formData.aadhar)) return "Aadhaar must be 12 digits";
+
   if (!formData.farmerName.trim()) return "Farmer name required";
+
   if (formData.password.length < PASSWORD_MIN_LENGTH)
     return `Password min ${PASSWORD_MIN_LENGTH} characters`;
-  if (formData.password !== formData.rePassword) return "Passwords do not match";
+
+  if (formData.password !== formData.rePassword)
+    return "Passwords do not match";
+
   return null;
 }
 
@@ -142,8 +147,10 @@ export default function useFarmerRegistration() {
       const { password, rePassword, ...payload } = formData;
       const res = await registerFarmer({ ...payload, password });
 
-      //const { farmerId } = res.data;
-      const { farmerId } = res.data.data; 
+      const { farmerId } = res.data.data;
+      const selectedDistrict = districts.find(
+        (d) => d.id === formData.districtId,
+      );
 
       dispatch(
         setFarmerSession({
@@ -151,8 +158,9 @@ export default function useFarmerRegistration() {
           aadhaar: formData.aadhar,
           farmerName: formData.farmerName,
           districtId: formData.districtId,
+          districtName: selectedDistrict?.name || "",
           registrationStatus: "REGISTERED",
-        })
+        }),
       );
 
       toast.success("Registration successful");

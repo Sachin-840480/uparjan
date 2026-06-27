@@ -51,13 +51,17 @@ export default function useFarmerDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { farmerId, aadhaar, farmerName, districtId } = useSelector(
-    (state) => state.farmer
-  );
+  const {
+    farmerId,
+    aadhaar,
+    farmerName,
+
+    districtId,
+    districtName,
+  } = useSelector((state) => state.farmer);
 
   const [formData, setFormData] = useState(initialFarmerDetails);
   const [loading, setLoading] = useState(false);
-
   const [blocks, setBlocks] = useState([]);
   const [panchayats, setPanchayats] = useState([]);
   const [villages, setVillages] = useState([]);
@@ -87,7 +91,12 @@ export default function useFarmerDetails() {
     if (name === "blockId") {
       setPanchayats([]);
       setVillages([]);
-      setFormData((prev) => ({ ...prev, blockId: value, panchayatId: "", villageId: "" }));
+      setFormData((prev) => ({
+        ...prev,
+        blockId: value,
+        panchayatId: "",
+        villageId: "",
+      }));
       if (value) {
         getPanchayats(value)
           .then((res) => setPanchayats(res.data))
@@ -107,7 +116,12 @@ export default function useFarmerDetails() {
 
     if (name === "bankId") {
       setBranches([]);
-      setFormData((prev) => ({ ...prev, bankId: value, branchId: "", ifscCode: "" }));
+      setFormData((prev) => ({
+        ...prev,
+        bankId: value,
+        branchId: "",
+        ifscCode: "",
+      }));
       if (value) {
         getBranches(value)
           .then((res) => setBranches(res.data))
@@ -169,6 +183,7 @@ export default function useFarmerDetails() {
     farmerId,
     aadhaar,
     farmerName,
+    districtName,
     formData,
     loading,
     blocks,

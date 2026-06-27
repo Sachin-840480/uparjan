@@ -55,4 +55,4 @@ export const CATEGORIES = [
 ];
 
 export const ALLOWED_FILE_TYPES = ["image/jpeg", "image/jpg", "application/pdf"];
-export const MAX_FILE_SIZE_BYTES = 512 * 1024; // 512 KB
+export const MAX_FILE_SIZE_BYTES = 512 * 1024; 

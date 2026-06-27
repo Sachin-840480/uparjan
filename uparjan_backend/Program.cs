@@ -18,6 +18,10 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Features.FormOptions>(opts 
 {
     opts.MultipartBodyLengthLimit = 10 * 1024 * 1024;
 });
+builder.Services.AddControllers()
+    .AddJsonOptions(opts =>
+        opts.JsonSerializerOptions.PropertyNamingPolicy =
+            System.Text.Json.JsonNamingPolicy.CamelCase);
 
 var app = builder.Build();
 

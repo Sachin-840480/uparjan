@@ -81,5 +81,5 @@ export default function FarmerForm({
         </form>
       </div>
     </div>
-  );
+  )
 }

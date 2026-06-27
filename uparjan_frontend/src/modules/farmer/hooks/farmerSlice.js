@@ -5,6 +5,7 @@ const initialState = {
   aadhaar: null,
   farmerName: null,
   districtId: null,
+   districtName: null, 
   registrationStatus: null,
 };
 
