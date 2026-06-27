@@ -170,7 +170,7 @@ export default function useFarmerDetails() {
       dispatch(setFarmerSession({ registrationStatus: "DETAILS_SUBMITTED" }));
 
       toast.success("Details saved");
-      navigate("/farmer/land-details");
+      navigate("/farmer-registration/land-details");
     } catch (err) {
       const message = err?.response?.data?.message || "Submission failed";
       toast.error(message);
