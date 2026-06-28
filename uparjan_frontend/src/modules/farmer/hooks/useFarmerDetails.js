@@ -158,22 +158,38 @@ export default function useFarmerDetails() {
     e.preventDefault();
 
     const error = validate(formData);
-    if (error) {
-      toast.error(error);
-      return;
-    }
+    if (error) { toast.error(error); return; }
 
     setLoading(true);
     try {
       await submitFarmerDetails(farmerId, formData);
 
-      dispatch(setFarmerSession({ registrationStatus: "DETAILS_SUBMITTED" }));
+      // Resolve names from loaded lists
+      const selectedBlock     = blocks.find((b) => String(b.id) === formData.blockId);
+      const selectedPanchayat = panchayats.find((p) => String(p.id) === formData.panchayatId);
+      const selectedVillage   = villages.find((v) => String(v.id) === formData.villageId);
+      const selectedBank      = banks.find((b) => String(b.id) === formData.bankId);
+      const selectedBranch    = branches.find((b) => String(b.id) === formData.branchId);
+
+      dispatch(setFarmerSession({
+        registrationStatus: "DETAILS_SUBMITTED",
+        mobileNo:          formData.mobileNo,
+        fatherHusbandName: formData.fatherHusbandName,
+        category:          formData.category,
+        patwariHalkaNo:    formData.patwariHalkaNo,
+        accountNo:         formData.accountNo,
+        ifscCode:          formData.ifscCode,
+        blockName:         selectedBlock?.name     || formData.blockId,
+        panchayatName:     selectedPanchayat?.name || formData.panchayatId,
+        villageName:       selectedVillage?.name   || formData.villageId,
+        bankName:          selectedBank?.name      || formData.bankId,
+        branchName:        selectedBranch?.name    || formData.branchId,
+      }));
 
       toast.success("Details saved");
       navigate("/farmer-registration/land-details");
     } catch (err) {
-      const message = err?.response?.data?.message || "Submission failed";
-      toast.error(message);
+      toast.error(err?.response?.data?.message || "Submission failed");
     } finally {
       setLoading(false);
     }

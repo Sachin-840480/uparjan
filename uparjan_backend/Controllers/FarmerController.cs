@@ -38,13 +38,13 @@ public class FarmerController : ControllerBase
 
         var record = new FarmerRecord
         {
-            FarmerId    = farmerId,
-            DistrictId  = req.DistrictId,
-            MspId       = req.MspId,
-            Aadhar      = req.Aadhar,
-            FarmerName  = req.FarmerName,
+            FarmerId = farmerId,
+            DistrictId = req.DistrictId,
+            MspId = req.MspId,
+            Aadhar = req.Aadhar,
+            FarmerName = req.FarmerName,
             PasswordHash = BCryptHash(req.Password),
-            Status      = "REGISTERED",
+            Status = "REGISTERED",
         };
 
         _store[farmerId] = record;
@@ -80,18 +80,18 @@ public class FarmerController : ControllerBase
 
         farmer.Details = new FarmerDetails
         {
-            MobileNo          = req.MobileNo,
-            BlockId           = req.BlockId,
-            PanchayatId       = req.PanchayatId,
-            VillageId         = req.VillageId,
+            MobileNo = req.MobileNo,
+            BlockId = req.BlockId,
+            PanchayatId = req.PanchayatId,
+            VillageId = req.VillageId,
             FatherHusbandName = req.FatherHusbandName,
-            Category          = req.Category,
-            BankId            = req.BankId,
-            BranchId          = req.BranchId,
-            IfscCode          = req.IfscCode,
-            AccountNo         = req.AccountNo,
-            PatwariHalkaNo    = req.PatwariHalkaNo,
-            AadhaarFilePath   = aadhaarPath,
+            Category = req.Category,
+            BankId = req.BankId,
+            BranchId = req.BranchId,
+            IfscCode = req.IfscCode,
+            AccountNo = req.AccountNo,
+            PatwariHalkaNo = req.PatwariHalkaNo,
+            AadhaarFilePath = aadhaarPath,
             BankPassbookFilePath = passbookPath,
         };
 
@@ -119,7 +119,11 @@ public class FarmerController : ControllerBase
         {
             payload = JsonSerializer.Deserialize<LandPayload>(
                 req.Payload,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString
+                }
             );
         }
         catch
@@ -134,8 +138,8 @@ public class FarmerController : ControllerBase
         foreach (var record in payload.LandRecords)
         {
             var totalAcre = record.RakbaIrrigated + record.RakbaUnirrigated;
-            var maxQtl    = totalAcre * 16;
-            var totalQtl  = record.ProcurementIrrigated + record.ProcurementUnirrigated;
+            var maxQtl = totalAcre * 16;
+            var totalQtl = record.ProcurementIrrigated + record.ProcurementUnirrigated;
 
             if (totalQtl > maxQtl)
                 return BadRequest(Fail(
@@ -165,7 +169,7 @@ public class FarmerController : ControllerBase
     private static string GenerateFarmerId()
     {
         var today = DateTime.Now;
-        var seq   = Random.Shared.Next(100, 999);
+        var seq = Random.Shared.Next(100, 999);
         return $"{today:yyyyMMdd}{seq:000}";
     }
 
@@ -192,7 +196,7 @@ public class FarmerController : ControllerBase
         var uploadsDir = Path.Combine(_env.ContentRootPath, "Uploads", farmerId);
         Directory.CreateDirectory(uploadsDir);
 
-        var ext      = Path.GetExtension(file.FileName);
+        var ext = Path.GetExtension(file.FileName);
         var fileName = $"{tag}_{DateTime.UtcNow:yyyyMMddHHmmss}{ext}";
         var fullPath = Path.Combine(uploadsDir, fileName);
 

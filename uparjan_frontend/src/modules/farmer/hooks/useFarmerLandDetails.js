@@ -49,8 +49,12 @@ function validateLandRecord(record) {
 export default function useFarmerLandDetails() {
   const navigate = useNavigate();
 
-  const { farmerId, aadhaar, farmerName, districtId, registrationStatus } =
-    useSelector((state) => state.farmer);
+  const {
+    farmerId, aadhaar, farmerName, districtId, registrationStatus,
+    districtName, mspName, blockName, panchayatName, villageName,
+    fatherHusbandName, mobileNo, category, patwariHalkaNo,
+    bankName, branchName, ifscCode, accountNo,
+  } = useSelector((state) => state.farmer);
 
   const [formData, setFormData] = useState(initialFarmerLandDetails);
   const [draftRecord, setDraftRecord] = useState(initialLandRecord);
@@ -174,7 +178,7 @@ export default function useFarmerLandDetails() {
     try {
       await submitFarmerLandDetails(farmerId, formData);
       toast.success("Land details submitted");
-      navigate("/farmer/dashboard");
+      navigate("/");
     } catch (err) {
       const message = err?.response?.data?.message || "Submission failed";
       toast.error(message);
@@ -184,9 +188,10 @@ export default function useFarmerLandDetails() {
   };
 
   return {
-    farmerId,
-    aadhaar,
-    farmerName,
+    farmerId, aadhaar, farmerName,
+    districtName, mspName, blockName, panchayatName, villageName,
+    fatherHusbandName, mobileNo, category, patwariHalkaNo,
+    bankName, branchName, ifscCode, accountNo,
     formData,
     draftRecord,
     loading,

@@ -148,20 +148,19 @@ export default function useFarmerRegistration() {
       const res = await registerFarmer({ ...payload, password });
 
       const { farmerId } = res.data.data;
-      const selectedDistrict = districts.find(
-        (d) => d.id === formData.districtId,
-      );
+      const selectedDistrict = districts.find((d) => String(d.id) === formData.districtId);
+      const selectedMsp = mspList.find((m) => String(m.id) === formData.mspId);
 
-      dispatch(
-        setFarmerSession({
-          farmerId,
-          aadhaar: formData.aadhar,
-          farmerName: formData.farmerName,
-          districtId: formData.districtId,
-          districtName: selectedDistrict?.name || "",
-          registrationStatus: "REGISTERED",
-        }),
-      );
+      dispatch(setFarmerSession({
+        farmerId,
+        aadhaar:      formData.aadhar,
+        farmerName:   formData.farmerName,
+        districtId:   formData.districtId,
+        districtName: selectedDistrict?.name || formData.districtId,
+        mspName:      selectedMsp?.name      || formData.mspId,
+        registrationStatus: "REGISTERED",
+      }));
+
 
       toast.success("Registration successful");
       navigate("/farmer-registration/details");

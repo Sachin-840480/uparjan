@@ -216,7 +216,7 @@ export default function FarmerDetailsForm({
             </div>
 
             <div className="field-group">
-              <label>Aadhaar (JPEG/PDF, ≤512KB) *</label>
+              <label>Aadhaar *</label>
               <input
                 type="file"
                 name="aadhaarFile"
@@ -227,7 +227,7 @@ export default function FarmerDetailsForm({
             </div>
 
             <div className="field-group">
-              <label>Bank Passbook (JPEG/PDF, ≤512KB) *</label>
+              <label>Bank Passbook *</label>
               <input
                 type="file"
                 name="bankPassbookFile"

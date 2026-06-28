@@ -7,9 +7,10 @@ const LAND_TYPES = [
 ];
 
 export default function FarmerLandForm({
-  farmerId,
-  aadhaar,
-  farmerName,
+  farmerId, aadhaar, farmerName,
+  districtName, mspName, blockName, panchayatName, villageName,
+  fatherHusbandName, mobileNo, category, patwariHalkaNo,
+  bankName, branchName, ifscCode, accountNo,
   formData,
   draftRecord,
   loading,
@@ -34,18 +35,22 @@ export default function FarmerLandForm({
 
         {/* Farmer summary */}
         <div className="farmer-summary-grid">
-          <div>
-            <span>FARMER ID</span>
-            <span>{farmerId}</span>
-          </div>
-          <div>
-            <span>AADHAR NO</span>
-            <span>xxxx-xxxx-xxxx-{aadhaar?.slice(-3)}</span>
-          </div>
-          <div>
-            <span>NAME</span>
-            <span>{farmerName}</span>
-          </div>
+          <div><span>FARMER ID</span>    <span>{farmerId}</span></div>
+          <div><span>MSP CENTER</span>   <span>{mspName}</span></div>
+          <div><span>DISTRICT</span>     <span>{districtName}</span></div>
+          <div><span>BLOCK</span>        <span>{blockName}</span></div>
+          <div><span>GRAMPANCHAYAT</span><span>{panchayatName}</span></div>
+          <div><span>VILLAGE</span>      <span>{villageName}</span></div>
+          <div><span>NAME</span>         <span>{farmerName}</span></div>
+          <div><span>FATHER/HUSBAND NAME</span><span>{fatherHusbandName}</span></div>
+          <div><span>CONTACT NO</span>   <span>xxxxxxxx{mobileNo?.slice(-2)}</span></div>
+          <div><span>CATEGORY</span>     <span>{category}</span></div>
+          <div><span>HALKA NO</span>     <span>{patwariHalkaNo}</span></div>
+          <div><span>ADHAR NO</span>     <span>xxxx-xxxx-xxxx-{aadhaar?.slice(-3)}</span></div>
+          <div><span>BANK NAME</span>    <span>{bankName}</span></div>
+          <div><span>BANK BRANCH</span>  <span>{branchName}</span></div>
+          <div><span>IFSC CODE</span>    <span>xxxxxxxxx-{ifscCode?.slice(-2)}</span></div>
+          <div><span>ACCOUNT NO</span>   <span>xxxxxxxxx-{accountNo?.slice(-2)}</span></div>
         </div>
 
         <form onSubmit={handleSubmit}>
