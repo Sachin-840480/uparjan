@@ -225,7 +225,6 @@ public class LandRecord
     public string HalkaId { get; set; } = "";
     public string MaujaId { get; set; } = "";
     public string CropId { get; set; } = "";
-    public string LandType { get; set; } = "";
     public string VolumeNoInRegII { get; set; } = "";
     public string PageNoInRegII { get; set; } = "";
     public string PlotNo { get; set; } = "";

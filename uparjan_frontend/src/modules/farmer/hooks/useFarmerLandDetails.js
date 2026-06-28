@@ -26,7 +26,6 @@ function validateLandRecord(record) {
   if (!record.halkaId) return "Select halka";
   if (!record.maujaId) return "Select mauja";
   if (!record.cropId) return "Select crop";
-  if (!record.landType) return "Select land type";
 
   const totalRakba =
     parseFloat(record.rakbaIrrigated || 0) +

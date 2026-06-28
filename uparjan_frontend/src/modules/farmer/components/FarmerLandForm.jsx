@@ -167,23 +167,6 @@ export default function FarmerLandForm({
                 </select>
               </div>
 
-              <div className="field-group">
-                <label>Land Type</label>
-                <select
-                  name="landType"
-                  value={draftRecord.landType}
-                  onChange={handleDraftChange}
-                  className="field-select"
-                >
-                  <option value="">Select</option>
-                  {LAND_TYPES.map((t) => (
-                    <option key={t.value} value={t.value}>
-                      {t.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
               {["volumeNoInRegII", "pageNoInRegII", "plotNo", "khasraNo"].map(
                 (field) => (
                   <div className="field-group" key={field}>

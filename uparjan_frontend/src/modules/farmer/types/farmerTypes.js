@@ -28,7 +28,6 @@ export const initialLandRecord = {
   halkaId: "",
   maujaId: "",
   cropId: "",
-  landType: "",
   volumeNoInRegII: "",
   pageNoInRegII: "",
   plotNo: "",
