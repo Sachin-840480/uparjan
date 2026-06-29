@@ -49,10 +49,24 @@ export default function useFarmerLandDetails() {
   const navigate = useNavigate();
 
   const {
-    farmerId, aadhaar, farmerName, districtId, registrationStatus,
-    districtName, mspName, blockName, panchayatName, villageName,
-    fatherHusbandName, mobileNo, category, patwariHalkaNo,
-    bankName, branchName, ifscCode, accountNo,
+    farmerId,
+    aadhaar,
+    farmerName,
+    districtId,
+    registrationStatus,
+    districtName,
+    mspName,
+    blockName,
+    panchayatName,
+    villageName,
+    fatherHusbandName,
+    mobileNo,
+    category,
+    patwariHalkaNo,
+    bankName,
+    branchName,
+    ifscCode,
+    accountNo,
   } = useSelector((state) => state.farmer);
 
   const [formData, setFormData] = useState(initialFarmerLandDetails);
@@ -114,7 +128,12 @@ export default function useFarmerLandDetails() {
     if (name === "circleId") {
       setHalkas([]);
       setMaujas([]);
-      setDraftRecord((prev) => ({ ...prev, circleId: value, halkaId: "", maujaId: "" }));
+      setDraftRecord((prev) => ({
+        ...prev,
+        circleId: value,
+        halkaId: "",
+        maujaId: "",
+      }));
       if (value) {
         getHalkas(value)
           .then((res) => setHalkas(res.data))
@@ -168,10 +187,22 @@ export default function useFarmerLandDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.landType) { toast.error("Select land type"); return; }
-    if (!formData.subDistrictId) { toast.error("Select sub-district"); return; }
-    if (formData.landRecords.length === 0) { toast.error("Add at least one land record"); return; }
-    if (!formData.verifyingOfficerId) { toast.error("Select verifying officer"); return; }
+    if (!formData.landType) {
+      toast.error("Select land type");
+      return;
+    }
+    if (!formData.subDistrictId) {
+      toast.error("Select sub-district");
+      return;
+    }
+    if (formData.landRecords.length === 0) {
+      toast.error("Add at least one land record");
+      return;
+    }
+    if (!formData.verifyingOfficerId) {
+      toast.error("Select verifying officer");
+      return;
+    }
 
     setLoading(true);
     try {
@@ -187,10 +218,22 @@ export default function useFarmerLandDetails() {
   };
 
   return {
-    farmerId, aadhaar, farmerName,
-    districtName, mspName, blockName, panchayatName, villageName,
-    fatherHusbandName, mobileNo, category, patwariHalkaNo,
-    bankName, branchName, ifscCode, accountNo,
+    farmerId,
+    aadhaar,
+    farmerName,
+    districtName,
+    mspName,
+    blockName,
+    panchayatName,
+    villageName,
+    fatherHusbandName,
+    mobileNo,
+    category,
+    patwariHalkaNo,
+    bankName,
+    branchName,
+    ifscCode,
+    accountNo,
     formData,
     draftRecord,
     loading,

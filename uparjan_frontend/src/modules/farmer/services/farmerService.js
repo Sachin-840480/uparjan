@@ -1,13 +1,3 @@
-// import axiosClient from "../../../core/api/axiosClient";
-
-// export const registerFarmer = async (data) => {
-//   return await axiosClient.post(
-//     "/farmer-registration",
-//     data
-//   );
-// };
-
-
 import axiosClient from "../../../core/api/axiosClient";
 
 export const registerFarmer = async (data) => {

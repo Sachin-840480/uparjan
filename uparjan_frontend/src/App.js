@@ -18,22 +18,25 @@ import FarmerDetails from "./modules/farmer/pages/FarmerDetails";
 
 import FarmerLandDetails from "./modules/farmer/pages/FarmerLandDetails";
 
-
 function App() {
   return (
     <BrowserRouter>
-
       <Toaster position="top-right" />
 
       <Routes>
-
         <Route path="/" element={<Dashboard />} />
 
         <Route path="/farmer-registration" element={<FarmerRegistration />} />
 
-        <Route path="/farmer-registration/details" element={<FarmerDetails />} />
-        
-        <Route path="/farmer-registration/land-details" element={<FarmerLandDetails />} />
+        <Route
+          path="/farmer-registration/details"
+          element={<FarmerDetails />}
+        />
+
+        <Route
+          path="/farmer-registration/land-details"
+          element={<FarmerLandDetails />}
+        />
 
         <Route path="/farmer/login" element={<FarmerLogin />} />
 
