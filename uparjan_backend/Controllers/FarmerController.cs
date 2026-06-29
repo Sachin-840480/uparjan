@@ -9,18 +9,15 @@ namespace uparjan_backend.Controllers;
 [Route("api/farmer")]
 public class FarmerController : ControllerBase
 {
-    // In-memory store — replace with DB later
     private static readonly ConcurrentDictionary<string, FarmerRecord> _store = new();
 
     private readonly IWebHostEnvironment _env;
 
     public FarmerController(IWebHostEnvironment env) => _env = env;
 
-    // ── POST /api/farmer/register ──────────────────────────────
     [HttpPost("/api/farmer-register")]
     public IActionResult Register([FromBody] RegisterFarmerRequest req)
     {
-        // Validation
         if (!System.Text.RegularExpressions.Regex.IsMatch(req.Aadhar, @"^\d{12}$"))
             return BadRequest(Fail("Aadhaar must be 12 digits"));
 
@@ -30,7 +27,6 @@ public class FarmerController : ControllerBase
         if (string.IsNullOrWhiteSpace(req.FarmerName))
             return BadRequest(Fail("Farmer name required"));
 
-        // Check duplicate aadhaar
         if (_store.Values.Any(f => f.Aadhar == req.Aadhar))
             return Conflict(Fail("Aadhaar already registered"));
 
@@ -56,7 +52,6 @@ public class FarmerController : ControllerBase
         ));
     }
 
-    // ── POST /api/farmer/{farmerId}/details ───────────────────
     [HttpPost("{farmerId}/details")]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> SubmitDetails(
@@ -69,7 +64,6 @@ public class FarmerController : ControllerBase
         if (farmer.Status != "REGISTERED")
             return BadRequest(Fail("Details already submitted"));
 
-        // Validate files
         var aadhaarPath = await SaveFile(req.AadhaarFile, farmerId, "aadhaar");
         if (aadhaarPath is null)
             return BadRequest(Fail("Aadhaar file invalid or missing"));
@@ -100,7 +94,6 @@ public class FarmerController : ControllerBase
         return Ok(new ApiResponse<object>(true, "Details saved successfully", null));
     }
 
-    // ── PUT /api/farmer/{farmerId}/land-details ───────────────
     [HttpPut("{farmerId}/land-details")]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> SubmitLandDetails(
@@ -113,7 +106,6 @@ public class FarmerController : ControllerBase
         if (farmer.Status == "REGISTERED")
             return BadRequest(Fail("Submit basic details first"));
 
-        // Parse JSON payload
         LandPayload? payload;
         try
         {
@@ -134,7 +126,6 @@ public class FarmerController : ControllerBase
         if (payload is null || payload.LandRecords.Count == 0)
             return BadRequest(Fail("At least one land record required"));
 
-        // Validate per-acre quota
         foreach (var record in payload.LandRecords)
         {
             var totalAcre = record.RakbaIrrigated + record.RakbaUnirrigated;
@@ -155,7 +146,6 @@ public class FarmerController : ControllerBase
         return Ok(new ApiResponse<object>(true, "Land details submitted successfully", null));
     }
 
-    // ── GET /api/farmer/{farmerId} (debug) ────────────────────
     [HttpGet("{farmerId}")]
     public IActionResult GetFarmer(string farmerId)
     {
@@ -165,7 +155,6 @@ public class FarmerController : ControllerBase
         return Ok(new ApiResponse<FarmerRecord>(true, "OK", farmer));
     }
 
-    // ── Helpers ───────────────────────────────────────────────
     private static string GenerateFarmerId()
     {
         var today = DateTime.Now;
@@ -175,7 +164,6 @@ public class FarmerController : ControllerBase
 
     private static string BCryptHash(string password)
     {
-        // Simple SHA256 for mock — swap for BCrypt.Net in prod
         var bytes = System.Security.Cryptography.SHA256.HashData(
             System.Text.Encoding.UTF8.GetBytes(password)
         );
@@ -210,7 +198,6 @@ public class FarmerController : ControllerBase
         new ApiResponse<object>(false, message, null);
 }
 
-// ── Land payload model ─────────────────────────────────────────
 public class LandPayload
 {
     public string LandType { get; set; } = "";

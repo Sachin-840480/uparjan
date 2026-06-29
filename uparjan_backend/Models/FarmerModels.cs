@@ -1,6 +1,4 @@
 namespace uparjan_backend.Models;
-
-// ── Requests ──────────────────────────────────────────────────
 public record RegisterFarmerRequest(
     string DistrictId,
     string MspId,
@@ -28,16 +26,13 @@ public class FarmerDetailsRequest
 
 public class FarmerLandDetailsRequest
 {
-    // JSON payload field (stringified from React FormData)
     public string Payload { get; set; } = "";
     public IFormFile? LandDocument { get; set; }
 }
 
-// ── Responses ─────────────────────────────────────────────────
 public record RegisterFarmerResponse(string FarmerId, string Message);
 public record ApiResponse<T>(bool Success, string Message, T? Data);
 
-// ── In-memory store ───────────────────────────────────────────
 public class FarmerRecord
 {
     public string FarmerId { get; set; } = "";
@@ -46,7 +41,7 @@ public class FarmerRecord
     public string Aadhar { get; set; } = "";
     public string FarmerName { get; set; } = "";
     public string PasswordHash { get; set; } = "";
-    public string Status { get; set; } = "REGISTERED"; // REGISTERED | DETAILS_SUBMITTED | LAND_SUBMITTED
+    public string Status { get; set; } = "REGISTERED";
     public FarmerDetails? Details { get; set; }
 }
 

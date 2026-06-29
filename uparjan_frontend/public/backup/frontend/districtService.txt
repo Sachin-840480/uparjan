@@ -1,0 +1,10 @@
+// export const getDistricts = async () => {
+//   return await axiosClient.get("/districts");
+// };
+
+
+
+// export const getMspList = async () => {
+//   return await axiosClient.get("/msp");
+// };
+
