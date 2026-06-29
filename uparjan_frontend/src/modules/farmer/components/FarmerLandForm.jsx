@@ -1,4 +1,4 @@
-import "./FarmerRegistration.css";
+import "./FarmerLandForm.css";
 
 const LAND_TYPES = [
   { value: "OWN", label: "Own" },
